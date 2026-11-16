@@ -1,1 +1,99 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --principal: #6a1b9a;
+  --principal-oscuro: #4a148c;
+  --negro: #111;
+  --gris: #f4f4f4;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  background: var(--gris);
+  color: #222;
+}
+
+.encabezado {
+  background: var(--principal);
+  color: #fff;
+  padding: 12px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.marca { font-size: 1.8rem; font-weight: 800; }
+.marca span { color: var(--negro); }
+.encabezado nav { display: flex; flex-wrap: wrap; gap: 6px; }
+.encabezado nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+.encabezado nav a:hover { background: var(--principal-oscuro); }
+.encabezado nav a.activo { background: var(--negro); }
+
+.contenido { max-width: 1100px; margin: 0 auto; padding: 24px 16px; }
+
+h1 { margin-top: 0; border-bottom: 3px solid var(--principal); padding-bottom: 8px; }
+
+.tarjeta {
+  background: #fff;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+.tarjeta h2 { margin-top: 0; }
+
+.campos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin-bottom: 12px;
+}
+label { display: flex; flex-direction: column; gap: 4px; font-weight: 600; font-size: 0.9rem; }
+input, select, textarea {
+  padding: 8px;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  font: inherit;
+}
+input:focus, select:focus, textarea:focus { outline: 2px solid var(--principal); }
+
+.fila { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; align-items: center; }
+
+button {
+  background: var(--principal);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+button:hover { background: var(--principal-oscuro); }
+button:disabled { background: #999; cursor: not-allowed; }
+button.secundario { background: var(--negro); }
+button.peligro { background: #b71c1c; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+th { background: var(--negro); color: #fff; text-align: left; }
+th, td { padding: 10px; border-bottom: 1px solid #e5e5e5; }
+.acciones { display: flex; gap: 6px; }
+
+.aviso { padding: 10px 14px; border-radius: 6px; font-weight: 600; }
+.aviso.ok { background: #d9f2dd; color: #14572a; }
+.aviso.error { background: #fde0e0; color: #8a1020; }
