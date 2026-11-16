@@ -1,0 +1,113 @@
+<section class="pagina">
+  <h1>Películas</h1>
+
+  @if (mensaje()) {
+    <p class="aviso ok">{{ mensaje() }}</p>
+  }
+  @if (error()) {
+    <p class="aviso error">{{ error() }}</p>
+  }
+
+  <div class="tarjeta">
+    <h2>Buscar</h2>
+    <div class="fila">
+      <input name="busquedaTitulo" placeholder="Título" [(ngModel)]="busquedaTitulo" />
+      <button type="button" (click)="cargar()">Buscar por título</button>
+    </div>
+    <div class="fila">
+      <input name="busquedaId" type="number" placeholder="ID" [(ngModel)]="busquedaId" />
+      <button type="button" (click)="buscarPorId()">Buscar por ID</button>
+      <button type="button" class="secundario" (click)="limpiarBusqueda()">Ver todas</button>
+    </div>
+  </div>
+
+  <form class="tarjeta formulario" #f="ngForm" (ngSubmit)="guardar()">
+    <h2>{{ modoEdicion ? 'Editar película' : 'Nueva película' }}</h2>
+
+    <div class="campos">
+      <label>Título
+        <input name="titulo" [(ngModel)]="pelicula.titulo" required />
+      </label>
+      <label>Título original
+        <input name="tituloOriginal" [(ngModel)]="pelicula.tituloOriginal" />
+      </label>
+      <label>Género
+        <input name="genero" [(ngModel)]="pelicula.genero" required />
+      </label>
+      <label>Duración (min)
+        <input name="duracionMin" type="number" min="1" [(ngModel)]="pelicula.duracionMin" required />
+      </label>
+      <label>Clasificación
+        <input name="clasificacion" [(ngModel)]="pelicula.clasificacion" required />
+      </label>
+      <label>Estado
+        <select name="estado" [(ngModel)]="pelicula.estado">
+          @for (e of estados; track e) {
+            <option [ngValue]="e">{{ e }}</option>
+          }
+        </select>
+      </label>
+      <label>Fecha de estreno
+        <input name="fechaEstreno" type="date" [(ngModel)]="pelicula.fechaEstreno" />
+      </label>
+      <label>Reparto
+        <input name="reparto" [(ngModel)]="pelicula.reparto" />
+      </label>
+      <label>URL del afiche
+        <input name="imagenUrl" [(ngModel)]="pelicula.imagenUrl" />
+      </label>
+      <label>URL del tráiler
+        <input name="trailerUrl" [(ngModel)]="pelicula.trailerUrl" />
+      </label>
+    </div>
+
+    <label>Sinopsis
+      <textarea name="sinopsis" rows="3" [(ngModel)]="pelicula.sinopsis"></textarea>
+    </label>
+
+    <div class="fila">
+      <button type="submit" [disabled]="f.invalid">
+        {{ modoEdicion ? 'Actualizar' : 'Crear' }}
+      </button>
+      @if (modoEdicion) {
+        <button type="button" class="secundario" (click)="cancelar()">Cancelar</button>
+      }
+    </div>
+  </form>
+
+  @if (cargando()) {
+    <p>Cargando películas...</p>
+  } @else if (peliculas().length > 0) {
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Título</th>
+          <th>Género</th>
+          <th>Duración</th>
+          <th>Clasificación</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (p of peliculas(); track p.id) {
+          <tr>
+            <td>{{ p.id }}</td>
+            <td>{{ p.titulo }}</td>
+            <td>{{ p.genero }}</td>
+            <td>{{ p.duracionMin }} min</td>
+            <td>{{ p.clasificacion }}</td>
+            <td>{{ p.estado }}</td>
+            <td class="acciones">
+              <button type="button" (click)="editar(p)">Editar</button>
+              <button type="button" class="peligro" (click)="eliminar(p)">Eliminar</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  } @else {
+    <p>No hay películas registradas.</p>
+  }
+</section>
