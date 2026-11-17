@@ -15,7 +15,7 @@
         }
         <div class="info">
           <h3>{{ p.titulo }}</h3>
-          <p class="meta">{{ p.genero }} · {{ p.duracionMinutos }} min · {{ p.clasificacion }}</p>
+          <p class="meta">{{ p.genero }} · {{ p.duracionMin }} min · {{ p.clasificacion }}</p>
           <p class="estado">{{ p.estado }}</p>
           @if (p.trailerUrl) {
             <button type="button" (click)="verTrailer(p)">Ver tráiler</button>
