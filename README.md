@@ -1,59 +1,54 @@
-# CinemaxFrontend
+# CineMax - Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.7.
+Repositorio 3 de 3 del proyecto **Sistema de Taquilla de Cine** (Programación Basada en Componentes).
+Interfaz web hecha con **Angular** que consume la API REST de CineMax para administrar la cartelera y vender boletas.
 
-## Development server
+Repositorios del proyecto:
+1. [CineMax-BD](https://github.com/diegoescobararrieta-bit/CineMax-BD): scripts SQL (PostgreSQL).
+2. [CineMax-Backend](https://github.com/diegoescobararrieta-bit/CineMax-Backend): API REST con Spring Boot.
+3. **CineMax-Frontend** (este): interfaz en Angular.
 
-To start a local development server, run:
+## Integrantes
+- Diego Escobar Arrieta
+- Nestor Andres Torres Mora
 
+## Tecnologías
+- Angular 22 (componentes standalone)
+- TypeScript
+- Formularios con `FormsModule` y `ngModel`
+- `HttpClient` y Observables para consumir la API
+- Enrutamiento con `RouterLink` y `RouterOutlet`
+- Control de flujo `@if` y `@for`
+
+## Requisitos previos
+1. Node.js y npm instalados.
+2. Angular CLI (`npm install -g @angular/cli`).
+3. El **backend** en ejecución en `http://localhost:8080` (con la base de datos `cinemax` creada).
+
+## Cómo ejecutarlo
 ```bash
+npm install
 ng serve
 ```
+La aplicación queda disponible en `http://localhost:4200`.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Secciones
+| Ruta | Sección | Qué hace |
+|---|---|---|
+| `/peliculas` | Películas | CRUD completo de películas, con búsqueda por título |
+| `/funciones` | Funciones | CRUD completo de funciones; la película se elige en un `select` |
+| `/compras` | Compra de boletas | Elige función, cliente, ubicación y cantidad; muestra el total antes de comprar y el comprobante después. Si no hay cupos suficientes muestra el mensaje de error del **409** |
+| `/historial` | Historial de compras | Lista las compras, con filtro por un día o por rango de fechas y totales vendidos |
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+## Estructura del código
+```
+src/app/
+├── models/     Interfaces (Pelicula, Funcion, Compra, CompraRequest)
+├── services/   Servicios con HttpClient (PeliculaService, FuncionService, CompraService)
+├── pages/      Un componente por sección (peliculas, funciones, compras, historial)
+├── app.routes.ts   Rutas de la aplicación
+└── app.config.ts   Configuración (router y HttpClient)
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Conexión con el backend
+Los servicios llaman a `http://localhost:8080/api/...`. El backend ya tiene CORS habilitado para `http://localhost:4200`.
