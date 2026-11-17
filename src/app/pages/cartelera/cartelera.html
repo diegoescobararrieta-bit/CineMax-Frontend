@@ -1,0 +1,41 @@
+<section class="pagina">
+  <h1>Cartelera</h1>
+
+  @if (error()) {
+    <p class="aviso error">{{ error() }}</p>
+  }
+
+  <div class="rejilla">
+    @for (p of peliculas(); track p.id) {
+      <article class="afiche">
+        @if (p.imagenUrl) {
+          <img [src]="p.imagenUrl" [alt]="p.titulo" />
+        } @else {
+          <div class="sin-imagen">Sin afiche</div>
+        }
+        <div class="info">
+          <h3>{{ p.titulo }}</h3>
+          <p class="meta">{{ p.genero }} · {{ p.duracionMinutos }} min · {{ p.clasificacion }}</p>
+          <p class="estado">{{ p.estado }}</p>
+          @if (p.trailerUrl) {
+            <button type="button" (click)="verTrailer(p)">Ver tráiler</button>
+          }
+        </div>
+      </article>
+    } @empty {
+      <p>No hay películas en cartelera.</p>
+    }
+  </div>
+
+  @if (trailerAbierto(); as url) {
+    <div class="fondo" (click)="cerrarTrailer()">
+      <div class="modal" (click)="$event.stopPropagation()">
+        <div class="modal-cabecera">
+          <strong>{{ tituloTrailer() }}</strong>
+          <button type="button" class="secundario" (click)="cerrarTrailer()">Cerrar</button>
+        </div>
+        <iframe [src]="url" allowfullscreen></iframe>
+      </div>
+    </div>
+  }
+</section>
