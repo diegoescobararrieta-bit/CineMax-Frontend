@@ -1,0 +1,127 @@
+<section class="pagina">
+  <h1>Funciones</h1>
+
+  @if (mensaje()) {
+    <p class="aviso ok">{{ mensaje() }}</p>
+  }
+  @if (error()) {
+    <p class="aviso error">{{ error() }}</p>
+  }
+
+  <form class="tarjeta formulario" #f="ngForm" (ngSubmit)="guardar()">
+    <h2>{{ modoEdicion ? 'Editar función' : 'Nueva función' }}</h2>
+
+    <div class="campos">
+      <label>Película
+        <select name="peliculaId" [(ngModel)]="funcion.peliculaId" required>
+          <option [ngValue]="null">Seleccione una película</option>
+          @for (p of peliculas(); track p.id) {
+            <option [ngValue]="p.id">{{ p.titulo }}</option>
+          }
+        </select>
+      </label>
+      <label>Fecha
+        <input name="fecha" type="date" [(ngModel)]="funcion.fecha" required />
+      </label>
+      <label>Hora
+        <input name="hora" type="time" [(ngModel)]="funcion.hora" required />
+      </label>
+      <label>Sala
+        <input name="sala" [(ngModel)]="funcion.sala" required />
+      </label>
+      <label>Formato
+        <select name="formato" [(ngModel)]="funcion.formato">
+          @for (fm of formatos; track fm) {
+            <option [ngValue]="fm">{{ fm }}</option>
+          }
+        </select>
+      </label>
+      <label>Idioma
+        <select name="idioma" [(ngModel)]="funcion.idioma">
+          @for (i of idiomas; track i) {
+            <option [ngValue]="i">{{ i }}</option>
+          }
+        </select>
+      </label>
+      <label>Precio General
+        <input name="precio" type="number" min="0" [(ngModel)]="funcion.precio" required />
+      </label>
+      <label>Precio General+
+        <input name="precioGeneralPlus" type="number" min="0" [(ngModel)]="funcion.precioGeneralPlus" required />
+      </label>
+      <label>Cupos disponibles
+        <input name="cuposDisponibles" type="number" min="0" [(ngModel)]="funcion.cuposDisponibles" required />
+      </label>
+    </div>
+
+    <div class="fila">
+      <button type="submit" [disabled]="f.invalid">
+        {{ modoEdicion ? 'Actualizar' : 'Crear' }}
+      </button>
+      @if (modoEdicion) {
+        <button type="button" class="secundario" (click)="cancelar()">Cancelar</button>
+      }
+    </div>
+  </form>
+
+  <div class="tarjeta">
+    <h2>Filtrar por día</h2>
+    <div class="fila">
+      <input name="filtroFecha" type="date" [(ngModel)]="filtroFecha" />
+      <button type="button" (click)="cargar()">Filtrar</button>
+      <button type="button" class="secundario" (click)="limpiarFiltro()">Ver todas</button>
+    </div>
+  </div>
+
+  @if (cargando()) {
+    <p>Cargando funciones...</p>
+  } @else if (funciones().length > 0) {
+    <div class="tabla-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Película</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Sala</th>
+            <th>Formato</th>
+            <th>Idioma</th>
+            <th>General</th>
+            <th>General+</th>
+            <th>Cupos</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (fn of funciones(); track fn.id) {
+            <tr>
+              <td>{{ fn.id }}</td>
+              <td>{{ fn.pelicula.titulo }}</td>
+              <td>{{ fn.fecha }}</td>
+              <td>{{ fn.hora.substring(0, 5) }}</td>
+              <td>{{ fn.sala }}</td>
+              <td>{{ fn.formato }}</td>
+              <td>{{ fn.idioma }}</td>
+              <td>{{ dinero(fn.precio) }}</td>
+              <td>{{ dinero(fn.precioGeneralPlus) }}</td>
+              <td>
+                @if (fn.cuposDisponibles === 0) {
+                  Agotado
+                } @else {
+                  {{ fn.cuposDisponibles }}
+                }
+              </td>
+              <td class="acciones">
+                <button type="button" (click)="editar(fn)">Editar</button>
+                <button type="button" class="peligro" (click)="eliminar(fn)">Eliminar</button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  } @else {
+    <p>No hay funciones registradas.</p>
+  }
+</section>
