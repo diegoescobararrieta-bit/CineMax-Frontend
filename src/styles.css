@@ -15,17 +15,18 @@ body {
 }
 
 .encabezado {
-  background: var(--principal);
+  background: #12002b;
+  border-bottom: 3px solid var(--principal);
   color: #fff;
-  padding: 12px 24px;
+  padding: 8px 24px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
 }
-.marca { font-size: 1.8rem; font-weight: 800; }
-.marca span { color: var(--negro); }
+.marca { display: block; }
+.marca img { height: 46px; display: block; }
 .encabezado nav { display: flex; flex-wrap: wrap; gap: 6px; }
 .encabezado nav a {
   color: #fff;
@@ -35,7 +36,7 @@ body {
   font-weight: 600;
 }
 .encabezado nav a:hover { background: var(--principal-oscuro); }
-.encabezado nav a.activo { background: var(--negro); }
+.encabezado nav a.activo { background: var(--principal); }
 
 .contenido { max-width: 1100px; margin: 0 auto; padding: 24px 16px; }
 
