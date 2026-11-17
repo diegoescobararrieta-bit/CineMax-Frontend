@@ -1,0 +1,71 @@
+<section class="pagina">
+  <h1>Historial de compras</h1>
+
+  @if (error()) {
+    <p class="aviso error">{{ error() }}</p>
+  }
+
+  <form class="tarjeta formulario" (ngSubmit)="buscar()">
+    <h2>Filtrar por fecha</h2>
+    <div class="campos">
+      <label>Desde (o un solo día)
+        <input name="desde" type="date" [(ngModel)]="desde" />
+      </label>
+      <label>Hasta (opcional)
+        <input name="hasta" type="date" [(ngModel)]="hasta" />
+      </label>
+    </div>
+    <div class="fila">
+      <button type="submit">Buscar</button>
+      <button type="button" class="secundario" (click)="limpiar()">Ver todo</button>
+    </div>
+  </form>
+
+  @if (cargando()) {
+    <p>Cargando...</p>
+  } @else {
+    <div class="tarjeta">
+      <div class="tabla-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Fecha compra</th>
+              <th>Cliente</th>
+              <th>Película</th>
+              <th>Función</th>
+              <th>Ubicación</th>
+              <th>Boletas</th>
+              <th>Precio</th>
+              <th>Cargo</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (c of compras(); track c.id) {
+              <tr>
+                <td>{{ c.fechaCompra.substring(0, 10) }}</td>
+                <td>{{ c.nombreCliente }}</td>
+                <td>{{ c.funcion.pelicula.titulo }}</td>
+                <td>{{ c.funcion.fecha }} {{ c.funcion.hora.substring(0, 5) }} · {{ c.funcion.sala }}</td>
+                <td>{{ c.ubicacion }}</td>
+                <td>{{ c.cantidadBoletos }}</td>
+                <td>{{ dinero(c.precioUnitario) }}</td>
+                <td>{{ dinero(c.cargoServicio) }}</td>
+                <td><strong>{{ dinero(c.valorTotal) }}</strong></td>
+              </tr>
+            } @empty {
+              <tr><td colspan="9">No hay compras para ese filtro.</td></tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+      @if (compras().length > 0) {
+        <div class="resumen">
+          <p>{{ compras().length }} compras · {{ totalBoletas() }} boletas</p>
+          <p class="total">Total vendido: {{ dinero(totalVendido()) }}</p>
+        </div>
+      }
+    </div>
+  }
+</section>
