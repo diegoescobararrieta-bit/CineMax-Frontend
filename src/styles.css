@@ -97,3 +97,4 @@ th, td { padding: 10px; border-bottom: 1px solid #e5e5e5; }
 .aviso { padding: 10px 14px; border-radius: 6px; font-weight: 600; }
 .aviso.ok { background: #d9f2dd; color: #14572a; }
 .aviso.error { background: #fde0e0; color: #8a1020; }
+.tabla-scroll { overflow-x: auto; }
