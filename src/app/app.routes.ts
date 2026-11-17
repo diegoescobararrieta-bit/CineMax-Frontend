@@ -1,9 +1,11 @@
 import { Routes } from '@angular/router';
 import { Peliculas } from './pages/peliculas/peliculas';
 import { Funciones } from './pages/funciones/funciones';
+import { Compras } from './pages/compras/compras';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'peliculas', pathMatch: 'full' },
   { path: 'peliculas', component: Peliculas },
   { path: 'funciones', component: Funciones },
+  { path: 'compras', component: Compras },
 ];

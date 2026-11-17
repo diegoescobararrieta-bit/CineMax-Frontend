@@ -1,0 +1,69 @@
+<section class="pagina">
+  <h1>Compra de boletas</h1>
+
+  @if (mensaje()) {
+    <p class="aviso ok">{{ mensaje() }}</p>
+  }
+  @if (error()) {
+    <p class="aviso error">{{ error() }}</p>
+  }
+
+  @if (ultimaCompra(); as c) {
+    <div class="tarjeta resumen">
+      <h2>Comprobante</h2>
+      <p><strong>Cliente:</strong> {{ c.nombreCliente }}</p>
+      <p><strong>Película:</strong> {{ c.funcion.pelicula.titulo }}</p>
+      <p>
+        <strong>Función:</strong> {{ c.funcion.fecha }} {{ c.funcion.hora.substring(0, 5) }}
+        · {{ c.funcion.sala }} · {{ c.funcion.formato }} {{ c.funcion.idioma }}
+      </p>
+      <p><strong>Boletas:</strong> {{ c.cantidadBoletos }} ({{ c.ubicacion }})</p>
+      <p><strong>Cargo por servicio:</strong> {{ dinero(c.cargoServicio) }}</p>
+      <p class="total">Total pagado: {{ dinero(c.valorTotal) }}</p>
+    </div>
+  }
+
+  <form class="tarjeta formulario" #f="ngForm" (ngSubmit)="comprar()">
+    <h2>Selecciona tu función</h2>
+
+    <div class="campos">
+      <label>Función
+        <select name="funcionId" [(ngModel)]="compra.funcionId" required>
+          <option [ngValue]="null">Seleccione una función</option>
+          @for (fn of funciones(); track fn.id) {
+            <option [ngValue]="fn.id">
+              {{ fn.pelicula.titulo }} · {{ fn.fecha }} {{ fn.hora.substring(0, 5) }}
+              · {{ fn.sala }} · {{ fn.formato }} {{ fn.idioma }}
+              (quedan {{ fn.cuposDisponibles }})
+            </option>
+          }
+        </select>
+      </label>
+      <label>Nombre del cliente
+        <input name="nombreCliente" [(ngModel)]="compra.nombreCliente" required />
+      </label>
+      <label>Ubicación
+        <select name="ubicacion" [(ngModel)]="compra.ubicacion">
+          <option [ngValue]="'GENERAL'">General</option>
+          <option [ngValue]="'GENERAL_PLUS'">General+</option>
+        </select>
+      </label>
+      <label>Cantidad de boletas
+        <input name="cantidadBoletos" type="number" min="1" [(ngModel)]="compra.cantidadBoletos" required />
+      </label>
+    </div>
+
+    @if (funcionSeleccionada(); as fs) {
+      <div class="resumen">
+        <p><strong>{{ fs.pelicula.titulo }}</strong> · quedan {{ fs.cuposDisponibles }} cupos</p>
+        <p>Precio por boleta: {{ dinero(precioUnitario()) }}</p>
+        <p>Cargo por servicio: {{ dinero(CARGO_SERVICIO) }}</p>
+        <p class="total">Total a pagar: {{ dinero(total()) }}</p>
+      </div>
+    }
+
+    <div class="fila">
+      <button type="submit" [disabled]="f.invalid">Comprar</button>
+    </div>
+  </form>
+</section>
