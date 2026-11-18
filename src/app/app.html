@@ -4,11 +4,19 @@
   </a>
   <nav>
     <a routerLink="/cartelera" routerLinkActive="activo">Cartelera</a>
-    <a routerLink="/peliculas" routerLinkActive="activo">Películas</a>
-    <a routerLink="/funciones" routerLinkActive="activo">Funciones</a>
     <a routerLink="/compras" routerLinkActive="activo">Comprar boletas</a>
-    <a routerLink="/historial" routerLinkActive="activo">Historial</a>
     <a routerLink="/confiteria" routerLinkActive="activo">Confitería</a>
+
+    @if (auth.esAdmin()) {
+      <a routerLink="/peliculas" routerLinkActive="activo">Películas</a>
+      <a routerLink="/funciones" routerLinkActive="activo">Funciones</a>
+      <a routerLink="/historial" routerLinkActive="activo">Historial</a>
+      <button type="button" class="salir" (click)="cerrarSesion()">
+        Cerrar sesión ({{ auth.nombre() }})
+      </button>
+    } @else {
+      <a routerLink="/login" routerLinkActive="activo">Administrador</a>
+    }
   </nav>
 </header>
 
