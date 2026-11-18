@@ -5,6 +5,7 @@ import { Compras } from './pages/compras/compras';
 import { Historial } from './pages/historial/historial';
 import { Cartelera } from './pages/cartelera/cartelera';
 import { Detalle } from './pages/detalle/detalle';
+import { Confiteria } from './pages/confiteria/confiteria';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'peliculas', pathMatch: 'full' },
@@ -14,4 +15,5 @@ export const routes: Routes = [
   { path: 'historial', component: Historial },
   { path: 'cartelera', component: Cartelera },
   { path: 'cartelera/:id', component: Detalle },
+    { path: 'confiteria', component: Confiteria },
 ];
