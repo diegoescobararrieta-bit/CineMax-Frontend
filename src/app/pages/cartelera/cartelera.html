@@ -17,6 +17,8 @@
           <h3>{{ p.titulo }}</h3>
           <p class="meta">{{ p.genero }} · {{ p.duracionMin }} min · {{ p.clasificacion }}</p>
           <p class="estado">{{ p.estado }}</p>
+          <a class="boton" [routerLink]="['/cartelera', p.id]">Ver detalle</a>
+
           @if (p.trailerUrl) {
             <button type="button" (click)="verTrailer(p)">Ver tráiler</button>
           }

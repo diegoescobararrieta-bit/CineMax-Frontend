@@ -1,11 +1,12 @@
 import { Component, OnInit, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Pelicula } from '../../models/pelicula.model';
 import { PeliculaService } from '../../services/pelicula.service';
 
 @Component({
   selector: 'app-cartelera',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './cartelera.html',
   styleUrl: './cartelera.css',
 })

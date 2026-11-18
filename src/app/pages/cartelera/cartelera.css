@@ -56,3 +56,15 @@
   border: 0;
   border-radius: 6px;
 }
+
+.boton {
+  display: inline-block;
+  background: var(--principal);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  margin-right: 6px;
+}
+.boton:hover { background: var(--principal-oscuro); }
