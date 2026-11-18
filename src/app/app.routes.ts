@@ -6,7 +6,8 @@ import { Historial } from './pages/historial/historial';
 import { Cartelera } from './pages/cartelera/cartelera';
 import { Detalle } from './pages/detalle/detalle';
 import { Confiteria } from './pages/confiteria/confiteria';
-
+import { Login } from './pages/login/login';
+import { adminGuard } from './services/admin.guard';
 export const routes: Routes = [
   { path: '', redirectTo: 'cartelera', pathMatch: 'full' },
   { path: 'peliculas', component: Peliculas },
