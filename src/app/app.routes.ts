@@ -8,13 +8,17 @@ import { Detalle } from './pages/detalle/detalle';
 import { Confiteria } from './pages/confiteria/confiteria';
 import { Login } from './pages/login/login';
 import { adminGuard } from './services/admin.guard';
+
 export const routes: Routes = [
   { path: '', redirectTo: 'cartelera', pathMatch: 'full' },
-  { path: 'peliculas', component: Peliculas },
-  { path: 'funciones', component: Funciones },
-  { path: 'compras', component: Compras },
-  { path: 'historial', component: Historial },
+  { path: 'login', component: Login },
   { path: 'cartelera', component: Cartelera },
   { path: 'cartelera/:id', component: Detalle },
+  { path: 'compras', component: Compras },
   { path: 'confiteria', component: Confiteria },
+
+  // Solo administrador
+  { path: 'peliculas', component: Peliculas, canActivate: [adminGuard] },
+  { path: 'funciones', component: Funciones, canActivate: [adminGuard] },
+  { path: 'historial', component: Historial, canActivate: [adminGuard] },
 ];
