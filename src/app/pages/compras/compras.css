@@ -7,3 +7,13 @@
 }
 .resumen p { margin: 4px 0; }
 .total { font-size: 1.3rem; font-weight: 800; }
+
+.promo {
+  background: #12002b;
+  color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 16px;
+}
+.promo-img { width: 100%; display: block; }
+.promo-precio { margin: 0; padding: 12px 16px; font-size: 1.1rem; text-align: center; }

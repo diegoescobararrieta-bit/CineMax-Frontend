@@ -65,5 +65,16 @@
     <div class="fila">
       <button type="submit" [disabled]="f.invalid">Comprar</button>
     </div>
+    <aside class="promo">
+  <img class="promo-img" src="/img/cinemax-plus.jpg" alt="CineMax+: vive el cine en modo VIP" />
+  @if (funcionSeleccionada(); as fs) {
+    <p class="promo-precio">
+      Con la función elegida, CineMax+ cuesta
+      <strong>{{ dinero(fs.precioGeneralPlus - fs.precio) }}</strong> más por boleta.
+    </p>
+  } @else {
+    <p class="promo-precio">Elige una función y mira cuánto cuesta mejorar a CineMax+.</p>
+  }
+</aside>
   </form>
 </section>
