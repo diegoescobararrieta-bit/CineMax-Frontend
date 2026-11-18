@@ -33,7 +33,7 @@
               <th>Cliente</th>
               <th>Película</th>
               <th>Función</th>
-              <th>Ubicación</th>
+              <th>Tipo de boleta</th>
               <th>Boletas</th>
               <th>Precio</th>
               <th>Cargo</th>
@@ -47,7 +47,7 @@
                 <td>{{ c.nombreCliente }}</td>
                 <td>{{ c.funcion.pelicula.titulo }}</td>
                 <td>{{ c.funcion.fecha }} {{ c.funcion.hora.substring(0, 5) }} · {{ c.funcion.sala }}</td>
-                <td>{{ c.ubicacion }}</td>
+                <td>{{ etiquetaUbicacion(c.ubicacion) }}</td>
                 <td>{{ c.cantidadBoletos }}</td>
                 <td>{{ dinero(c.precioUnitario) }}</td>
                 <td>{{ dinero(c.cargoServicio) }}</td>

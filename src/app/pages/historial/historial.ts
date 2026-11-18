@@ -60,6 +60,10 @@ export class Historial implements OnInit {
     return this.compras().reduce((suma, c) => suma + c.cantidadBoletos, 0);
   }
 
+  etiquetaUbicacion(u: string): string {
+    return u === 'GENERAL_PLUS' ? 'CineMax+ (VIP)' : 'Estándar';
+  }
+
   dinero(valor: number): string {
     return new Intl.NumberFormat('es-CO', {
       style: 'currency',

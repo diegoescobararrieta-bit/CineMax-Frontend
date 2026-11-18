@@ -1,10 +1,10 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Compra, CompraRequest } from '../../models/compra.model';
 import { Funcion } from '../../models/funcion.model';
 import { CompraService } from '../../services/compra.service';
 import { FuncionService } from '../../services/funcion.service';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-compras',
@@ -30,7 +30,7 @@ export class Compras implements OnInit {
     private route: ActivatedRoute,
   ) {}
 
-    ngOnInit(): void {
+  ngOnInit(): void {
     const id = Number(this.route.snapshot.queryParamMap.get('funcionId'));
     if (id) {
       this.compra.funcionId = id;
@@ -94,6 +94,10 @@ export class Compras implements OnInit {
         this.cargarFunciones();
       },
     });
+  }
+
+  etiquetaUbicacion(u: string): string {
+    return u === 'GENERAL_PLUS' ? 'CineMax+ (VIP)' : 'Estándar';
   }
 
   dinero(valor: number): string {

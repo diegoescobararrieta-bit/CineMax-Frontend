@@ -42,10 +42,10 @@
       <label>Nombre del cliente
         <input name="nombreCliente" [(ngModel)]="compra.nombreCliente" required />
       </label>
-      <label>Ubicación
+      <label>Tipo de boleta
         <select name="ubicacion" [(ngModel)]="compra.ubicacion">
-          <option [ngValue]="'GENERAL'">General</option>
-          <option [ngValue]="'GENERAL_PLUS'">General+</option>
+          <option [ngValue]="'GENERAL'">Estandar</option>
+          <option [ngValue]="'GENERAL_PLUS'">CineMax+</option>
         </select>
       </label>
       <label>Cantidad de boletas
