@@ -1,0 +1,23 @@
+.volver { display: inline-block; margin-bottom: 12px; color: var(--principal); font-weight: 600; text-decoration: none; }
+.detalle { display: grid; grid-template-columns: 260px 1fr; gap: 24px; }
+.lateral img { width: 100%; border-radius: 10px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25); }
+.lateral dt { font-weight: 700; margin-top: 12px; }
+.lateral dd { margin: 2px 0 0; }
+.principal h1 { margin-bottom: 8px; }
+.etiquetas { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { background: var(--principal); color: #fff; padding: 4px 12px; border-radius: 999px; font-size: 0.85rem; font-weight: 600; }
+.principal iframe { width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 8px; margin: 12px 0; }
+.boton {
+  display: inline-block;
+  background: var(--principal);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.boton:hover { background: var(--principal-oscuro); }
+@media (max-width: 700px) {
+  .detalle { grid-template-columns: 1fr; }
+  .lateral img { max-width: 220px; }
+}
