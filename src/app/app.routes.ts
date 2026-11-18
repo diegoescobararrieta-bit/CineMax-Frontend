@@ -8,12 +8,12 @@ import { Detalle } from './pages/detalle/detalle';
 import { Confiteria } from './pages/confiteria/confiteria';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'peliculas', pathMatch: 'full' },
+  { path: '', redirectTo: 'cartelera', pathMatch: 'full' },
   { path: 'peliculas', component: Peliculas },
   { path: 'funciones', component: Funciones },
   { path: 'compras', component: Compras },
   { path: 'historial', component: Historial },
   { path: 'cartelera', component: Cartelera },
   { path: 'cartelera/:id', component: Detalle },
-    { path: 'confiteria', component: Confiteria },
+  { path: 'confiteria', component: Confiteria },
 ];
