@@ -20,6 +20,7 @@
       <p><strong>Boletas:</strong> {{ c.cantidadBoletos }} ({{ c.ubicacion }})</p>
       <p><strong>Cargo por servicio:</strong> {{ dinero(c.cargoServicio) }}</p>
       <p class="total">Total pagado: {{ dinero(c.valorTotal) }}</p>
+      <button type="button" (click)="descargarRecibo(c)">Descargar recibo (PDF)</button>
     </div>
   }
 

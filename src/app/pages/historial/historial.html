@@ -38,6 +38,7 @@
               <th>Precio</th>
               <th>Cargo</th>
               <th>Total</th>
+              <th>Recibo</th>
             </tr>
           </thead>
           <tbody>
@@ -52,9 +53,10 @@
                 <td>{{ dinero(c.precioUnitario) }}</td>
                 <td>{{ dinero(c.cargoServicio) }}</td>
                 <td><strong>{{ dinero(c.valorTotal) }}</strong></td>
+                <td><button type="button" (click)="descargarRecibo(c)">PDF</button></td>
               </tr>
             } @empty {
-              <tr><td colspan="9">No hay compras para ese filtro.</td></tr>
+              <tr><td colspan="10">No hay compras para ese filtro.</td></tr>
             }
           </tbody>
         </table>

@@ -5,6 +5,7 @@ import { Compra, CompraRequest } from '../../models/compra.model';
 import { Funcion } from '../../models/funcion.model';
 import { CompraService } from '../../services/compra.service';
 import { FuncionService } from '../../services/funcion.service';
+import { ReciboService } from '../../services/recibo.service';
 
 @Component({
   selector: 'app-compras',
@@ -28,7 +29,11 @@ export class Compras implements OnInit {
     private funcionService: FuncionService,
     private compraService: CompraService,
     private route: ActivatedRoute,
+    private reciboService: ReciboService,
   ) {}
+  descargarRecibo(c: Compra): void {
+    this.reciboService.descargar(c);
+  }
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.queryParamMap.get('funcionId'));

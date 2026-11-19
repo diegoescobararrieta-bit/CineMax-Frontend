@@ -2,6 +2,7 @@ import { Component, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Compra } from '../../models/compra.model';
 import { CompraService } from '../../services/compra.service';
+import { ReciboService } from '../../services/recibo.service';
 
 @Component({
   selector: 'app-historial',
@@ -17,7 +18,14 @@ export class Historial implements OnInit {
   desde = '';
   hasta = '';
 
-  constructor(private compraService: CompraService) {}
+  constructor(
+    private compraService: CompraService,
+    private reciboService: ReciboService,
+  ) {}
+
+  descargarRecibo(c: Compra): void {
+    this.reciboService.descargar(c);
+  }
 
   ngOnInit(): void {
     this.buscar();
