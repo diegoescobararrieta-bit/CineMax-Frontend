@@ -107,13 +107,44 @@ th, td { padding: 10px; border-bottom: 1px solid #e5e5e5; }
 .encabezado nav button.salir:hover { background: var(--principal-oscuro); }
 
 .escenario {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   background: linear-gradient(160deg, #12002b 0%, #2a0a4d 55%, #12002b 100%);
   border-radius: 16px;
   padding: 24px;
   color: #fff;
   box-shadow: 0 4px 20px rgba(18, 0, 43, 0.35);
 }
+/* destellos de luz de fondo */
+.escenario::before,
+.escenario::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.escenario::before {
+  top: -140px;
+  right: -100px;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(179, 136, 255, 0.35), transparent 70%);
+}
+.escenario::after {
+  bottom: -160px;
+  left: -120px;
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(142, 36, 170, 0.35), transparent 70%);
+}
 .escenario h1 {
   color: #fff;
   border-bottom-color: #b388ff;
+}
+/* las tarjetas y tablas blancas conservan su texto oscuro */
+.escenario .tarjeta,
+.escenario table {
+  color: #222;
 }
