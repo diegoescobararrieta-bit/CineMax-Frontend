@@ -1,4 +1,4 @@
-<section class="pagina">
+<section class="pagina escenario">
   <h1>Cartelera</h1>
 
   @if (error()) {
@@ -7,22 +7,29 @@
 
   <div class="rejilla">
     @for (p of peliculas(); track p.id) {
-      <article class="afiche">
+      <article [class]="'afiche ' + claseEstado(p)">
         @if (p.imagenUrl) {
           <img [src]="p.imagenUrl" [alt]="p.titulo" />
         } @else {
           <div class="sin-imagen">Sin afiche</div>
         }
-        <div class="info">
-          <h3>{{ p.titulo }}</h3>
-          <p class="meta">{{ p.genero }} · {{ p.duracionMin }} min · {{ p.clasificacion }}</p>
-          <p class="estado">{{ p.estado }}</p>
-          <a class="boton" [routerLink]="['/cartelera', p.id]">Ver detalle</a>
 
+        <div class="titulo">
+          <h3>{{ p.titulo }}</h3>
+          @if (p.tituloOriginal && p.tituloOriginal !== p.titulo) {
+            <p class="original">{{ p.tituloOriginal }}</p>
+          }
+          <p class="meta">{{ p.genero }} · {{ p.duracionMin }} min · {{ p.clasificacion }}</p>
+        </div>
+
+        <div class="acciones">
+          <a class="boton" [routerLink]="['/cartelera', p.id]">Ver detalle</a>
           @if (p.trailerUrl) {
             <button type="button" (click)="verTrailer(p)">Ver tráiler</button>
           }
         </div>
+
+        <div class="barra">{{ etiquetaEstado(p) }}</div>
       </article>
     } @empty {
       <p>No hay películas en cartelera.</p>

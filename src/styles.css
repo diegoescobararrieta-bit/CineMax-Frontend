@@ -105,3 +105,15 @@ th, td { padding: 10px; border-bottom: 1px solid #e5e5e5; }
   border: 1px solid #fff;
 }
 .encabezado nav button.salir:hover { background: var(--principal-oscuro); }
+
+.escenario {
+  background: linear-gradient(160deg, #12002b 0%, #2a0a4d 55%, #12002b 100%);
+  border-radius: 16px;
+  padding: 24px;
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(18, 0, 43, 0.35);
+}
+.escenario h1 {
+  color: #fff;
+  border-bottom-color: #b388ff;
+}

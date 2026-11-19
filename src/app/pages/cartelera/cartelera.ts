@@ -39,4 +39,27 @@ export class Cartelera implements OnInit {
   cerrarTrailer(): void {
     this.trailerAbierto.set(null);
   }
+
+    claseEstado(p: Pelicula): string {
+    switch (p.estado) {
+      case 'PREVENTA':
+        return 'preventa';
+      case 'PROXIMAMENTE':
+        return 'proximamente';
+      default:
+        return 'cartelera';
+    }
+  }
+
+  etiquetaEstado(p: Pelicula): string {
+    switch (p.estado) {
+      case 'PREVENTA':
+        return 'PREVENTA';
+      case 'PROXIMAMENTE':
+        return 'PRÓXIMAMENTE';
+      default:
+        return 'EN CARTELERA';
+    }
+  }
 }
+
